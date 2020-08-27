@@ -1,0 +1,1 @@
+web: gunicorn DataScienceProject.wsgi:application --log-file -

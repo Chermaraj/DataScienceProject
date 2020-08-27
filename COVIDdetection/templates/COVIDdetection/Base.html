@@ -1,0 +1,195 @@
+﻿<!doctype html>
+{% load static %}
+{% load crispy_forms_field %}
+<style>
+    .profileLabel {
+    color: white;
+    font-size: 20px;
+}
+
+.profileForm legend {
+    font-size: 30px;
+    color: #fff;
+    width: 150%;
+}
+
+</style>
+<html lang="en">
+  <head>
+    <title>COVID-19 &mdash; Detection and Interpretation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <link rel="stylesheet" href="{% static 'COVIDdetection/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'COVIDdetection/fonts/icomoon/style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'COVIDdetection/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'COVIDdetection/css/style.css' %}"> 
+
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/style.css">    -->
+  </head>
+
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+    
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-6 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="index.html" class="h2 mb-0">COVID-19</a></h1>
+          </div>
+
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="#home-section" class="nav-link">Home</a></li>
+                <li class="has-children">
+                  <a href="#about-section" class="nav-link">About Us</a>
+                  <ul class="dropdown">                   
+                    <li><a href="{% url 'team' %}" class="nav-link">Team</a></li> 
+                    <li><a href="{% url 'patientList' None %}" class="nav-link">Patient</a></li>
+                    <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+                    <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
+                    </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+
+      <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;">
+        <a href="#" class="site-menu-toggle js-menu-toggle float-right">
+		  <span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+        
+    </header>
+
+    <div class="site-blocks-cover overlay" style="background-image: url('{% static "COVIDdetection/images/COVID-19.png" %}');" data-aos="fade" id="home-section">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+          
+          <div class="col-md-10 mt-lg-5 text-center">
+            <h1 class="text-uppercase" data-aos="fade-up">CORONA VIRUS DETECTION</h1>
+                <p class="mb-5 desc">Please upload the radiographic image and submit it for analyis.</p>
+               
+                  <!--<i class="fas fa-upload mr-2" aria-hidden="true"></i>Choose file</span>
+          <input type ="file" class="btn  btn-primary mr-2 mb-2"> -->
+          <form method="POST" enctype="multipart/form-data" action="upload/" >
+          {% csrf_token %}
+             <table  style="width: auto; margin-left:auto;margin-right:auto" >
+                  <tr>
+                  <td> <label class="profileLabel">Patient Name: </label>
+                   <label class="profileLabel"> {{form.patient }} </label></td>
+                  </tr>
+                 <tr>
+                  <td><p> {{ form.docfile_beforeAnalysis.label }} {{ form.docfile_beforeAnalysis.help_text }}<p></td>
+                  <tr>
+                      <td>
+                          <p class="btn" >
+                      {{ form.docfile_beforeAnalysis.errors }}
+                      {{ form.docfile_beforeAnalysis }}
+                          </p> 
+                            
+                      </td>
+                 </tr>
+                 <tr>
+                     <td> 
+                         <button class="btn" type ="submit">Submit for Results</button>
+
+                     </td>
+                 </tr>
+              </table>
+         
+
+         <!-- <p>{{ form.non_field_errors }}</p>
+
+          <p>{{ form.docfile_beforeAnalysis.label }} {{ form.docfile_beforeAnalysis.help_text }}</p>
+
+          <p class="btn" >
+              {{ form.docfile_beforeAnalysis.errors }}
+              {{ form.docfile_beforeAnalysis }}
+          </p> <br />   -->
+		 <!--<div class="upload-btn-wrapper">
+					  <button class="btn">Upload a file</button>
+            <input type="file" name="myfile" />
+          </div>-->
+
+          <!--<button class="btn" type ="submit">Submit for Results</button>
+         <br/> -->
+  </form>
+ </div>
+   </div>           
+            </div>
+          </div>
+            
+        </div>
+
+      <a href="#next" class="mouse smoothscroll">
+        <span class="mouse-icon">
+          <span class="mouse-wheel"></span>
+        </span>
+      </a>
+
+<footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+		     <h2 class="footer-heading mb-4">About Us</h2>
+                <p>Team Project.</p>
+           </div>
+              <div class="col-md-3 ml-auto">
+                <h2 class="footer-heading mb-4">Quick Links</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#about-section" class="smoothscroll">About Us</a></li>
+                  <li><a href="#contact-section" class="smoothscroll">Contact Us</a></li>
+                </ul>
+              </div>
+          </div>
+    
+      </div>
+ </footer>
+
+  <!--</div>  .site-wrap -->
+
+  <script src="{% static 'COVIDdetection/js/jquery-3.3.1.min.js' %}"></script>   
+  <script src="{% static 'COVIDdetection/js/jquery-ui.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/popper.min.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/jquery.countdown.min.js' %}"></script>   
+  <script src="{% static 'COVIDdetection/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/aos.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/jquery.sticky.js' %}"></script>  
+  <script src="{% static 'COVIDdetection/js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'COVIDdetection/js/main.js' %}"></script>
+
+   
+  </body>
+</html>
